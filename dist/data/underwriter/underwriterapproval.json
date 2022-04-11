@@ -1,5 +1,0 @@
-[
-    {"id": 1, "currency": "IDR", "effectiveDateFrom": "01/01/2000", "effectiveDateTo": "31/12/2999", "sarFrom": "0.00", "sarTo": "9,999,999,999.00", "annualPremiumFrom": "0.00", "annualPremiumTo": "9,999,999,999.00", "division": "L", "uwLevel": "1", "uwGroup": "DIRECTOR"},
-    {"id": 2, "currency": "IDR", "effectiveDateFrom": "01/01/2000", "effectiveDateTo": "31/12/2999", "sarFrom": "0.00", "sarTo": "100,000,000.00", "annualPremiumFrom": "0.00", "annualPremiumTo": "9,999,999,999.00", "division": "L", "uwLevel": "1", "uwGroup": "DEPTHEAD"},
-    {"id": 3, "currency": "IDR", "effectiveDateFrom": "01/01/2000", "effectiveDateTo": "31/12/2999", "sarFrom": "0.00", "sarTo": "500,000,000.00", "annualPremiumFrom": "0.00", "annualPremiumTo": "9,999,999,999.00", "division": "L", "uwLevel": "2", "uwGroup": "DIRECTOR"}
-]
