@@ -1,0 +1,10 @@
+{
+    "data": [
+        {"seqId": "1", "planCode": "01.02.45 - TUGU DANA MAKSIMA", "planStatus": "A - Approved", "launchDateFr": "01/01/1970", "launchDateTo": "31/12/2999", "prodCat": "GUL - GROUP UNIVERSAL LIFE", "benType": "E - Endowment", "partiCode": "N - NON PARTICIPATING", "planType": "B - BASE", "planCurr": "IDR - IDR"},
+        {"seqId": "2", "planCode": "01.02.44 - MANDIRI GUNA II", "planStatus": "A - Approved", "launchDateFr": "01/01/1970", "launchDateTo": "31/12/2999", "prodCat": "GUL - GROUP UNIVERSAL LIFE", "benType": "E - Endowment", "partiCode": "N - NON PARTICIPATING", "planType": "B - BASE", "planCurr": "IDR - IDR"},
+        {"seqId": "3", "planCode": "01.02.43 - MG III TUGU PRATAMA INDONESIA", "planStatus": "A - Approved", "launchDateFr": "01/01/1970", "launchDateTo": "31/12/2999", "prodCat": "GUL - GROUP UNIVERSAL LIFE", "benType": "E - Endowment", "partiCode": "N - NON PARTICIPATING", "planType": "B - BASE", "planCurr": "IDR - IDR"},
+        {"seqId": "4", "planCode": "01.02.46 - MANDIRI GUNA I PERTAMINA (SINGLE)", "planStatus": "A - Approved", "launchDateFr": "01/01/1970", "launchDateTo": "31/12/2999", "prodCat": "GUL - GROUP UNIVERSAL LIFE", "benType": "E - Endowment", "partiCode": "N - NON PARTICIPATING", "planType": "B - BASE", "planCurr": "IDR - IDR"},
+        {"seqId": "5", "planCode": "01.00.47 - MANDIRI GUNA I PERTAMINA (REGULAR)", "planStatus": "A - Approved", "launchDateFr": "01/01/1970", "launchDateTo": "31/12/2999", "prodCat": "GUL - GROUP UNIVERSAL LIFE", "benType": "E - Endowment", "partiCode": "N - NON PARTICIPATING", "planType": "B - BASE", "planCurr": "IDR - IDR"},
+        {"seqId": "5", "planCode": "01.00.48 - MANDIRI ASURANSI PESANGON SEJAHTERA", "planStatus": "A - Approved", "launchDateFr": "01/01/1970", "launchDateTo": "31/12/2999", "prodCat": "GUL - GROUP UNIVERSAL LIFE", "benType": "E - Endowment", "partiCode": "N - NON PARTICIPATING", "planType": "B - BASE", "planCurr": "IDR - IDR"}
+    ]
+}

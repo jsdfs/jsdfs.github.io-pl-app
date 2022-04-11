@@ -1,0 +1,54 @@
+/* .p-dropdown {
+  height: 1.9rem;
+  align-items: center;
+} */
+
+.p-dropdown .p-dropdown-label {
+  font-size: 0.9rem;
+}
+
+.p-dropdown .p-dropdown-item {
+  font-size: 0.9rem;
+}
+
+.p-inputtext {
+  font-size: 0.9rem;
+}
+
+.input-form .p-y {
+  height: 1.9rem;
+  font-size: 0.9rem;
+}
+
+.p-datatable-table {
+  font-size: 0.9rem;
+}
+
+/*To align the header of the datatable*/
+.rightAlign .p-column-header-content{
+  justify-content:flex-end;
+}
+
+.centerAlign .p-column-header-content{
+  justify-content:center;
+}
+
+/*To hide the sort icon for all sortable header*/
+.p-datatable .p-sortable-column-icon{
+
+  display: none;
+  
+}
+
+/*For fixed width for dropdown in datatable*/
+.editview {
+  max-width: 10px;
+  min-width: 100%;
+  width:100%;
+}
+
+/*To prevent dropdown item wrapper too long*/
+.p-dropdown-items-wrapper{
+  max-width: 60vw;
+}
+
