@@ -1,0 +1,15 @@
+{
+  "data": [
+    { "name": "Distribution Channel", "key": "D" },
+    { "name": "Gender", "key": "G" },
+    { "name": "Smoker / Non smoker", "key": "S" },
+    { "name": "Coverage Expiry Age", "key": "C" },
+    { "name": "Pension Age / Benefit Expiry Age", "key": "A" },
+    { "name": "Premium Payment Expiry Age", "key": "R" },
+    { "name": "Coverage Term", "key": "T" },
+    { "name": "Benefit Term", "key": "B" },
+    { "name": "Premium Payment Period", "key": "Y" },
+    { "name": "Benefit Component Code", "key": "O" },
+    { "name": "Monthly/ Yearly", "key": "M" }
+  ]
+}

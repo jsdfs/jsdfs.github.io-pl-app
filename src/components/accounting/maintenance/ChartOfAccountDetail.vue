@@ -1,0 +1,389 @@
+<template>
+    <div class="grid">
+            <div class="col-12">
+                <div class="card p-fluid">
+                    <div>
+                        <div style="float:left" class="flex justify-content-start flex-wrap card-container green-container">
+                            <div class="flex align-items-center justify-content-center"><Button icon="pi pi-chevron-left" type="button" class="p-button-outlined mr-2 mb-2" @click="close" /></div> 
+                        </div>  
+                        <div style="float:right" class="flex justify-content-end flex-wrap card-container green-container">
+                            <div class="flex align-items-center justify-content-center"><Button icon="pi pi-trash" type="button" class="p-button-warning mr-2 mb-2" @click="delRecord" /> </div>
+                            <div class="flex align-items-center justify-content-center"><Button icon="pi pi-check" type="button" style="background-color:#000080;" class="p-button-info mr-2 mb-2" @click="saveExit" /> </div>     
+                        </div>  
+                    </div>
+                    <div class="card p-fluid">
+                        <div class="formgrid grid">
+                            <div class="field col-12 md:col-6">
+                                <label for="effectiveDateFrom">Effective Date From *</label>
+                                <Calendar class="p-inputtext-sm" id="effectiveDateFrom" v-model="inputForm.effectiveDateFrom" :showIcon="true" :showOnFocus="false" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="effectiveDateTo">Effective Date To *</label>
+                                <Calendar class="p-inputtext-sm" id="effectiveDateTo" v-model="inputForm.effectiveDateTo" :showIcon="true" :showOnFocus="false" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="accountCode">Account Code *</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.accountCode" id="accountCode" :options="accountCodeLs" optionLabel="desc" optionValue="code" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="accountType">Account Type *</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.accountType" id="acctype" :options="accountTypeLs" optionLabel="desc" optionValue="code" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="fundByTransLvl">Fund Type by Transaction Level *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.fundByTransLvl) ? inputForm.subFundClass = '' : inputForm.subFundClass" v-model="inputForm.fundByTransLvl" id="fundByTransLvl" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="subFundClass">Fund Type Class *</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.subFundClass" id="subFundClass" :options="subFundLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.fundByTransLvl == true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t0">T0 (Fund Type) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t0) ? inputForm.glt0 = '' : inputForm.glt0" v-model="inputForm.t0" id="t0" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt0">Fund Type (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt0" id="glt0" :options="fundTypeLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t0 == true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t1">T1 (Product Group) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t1) ? inputForm.glt1 = '' : inputForm.glt1" v-model="inputForm.t1" id="t1" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt1">Product Group (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt1" id="glt1" :options="productGroupLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t1 == true" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t2">T2 (Product) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t2) ? inputForm.glt2 = '' : inputForm.glt2" v-model="inputForm.t2" id="t2" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt2">Product (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt2" id="glt2" :options="productLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t2 == true" />
+                            </div>            
+                            <div class="field col-12 md:col-6">
+                                <label for="t3">T3 (Distribution Channel) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t3) ? inputForm.glt3 = '' : inputForm.glt3" v-model="inputForm.t3" id="t3" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt3">Distribution Channel (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt3" id="glt3" :options="distributionChannelLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t3 == true"/>
+                            </div>  
+                            <div class="field col-12 md:col-6">
+                                <label for="t4">T4 (Policy Year) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t4) ? inputForm.glt4 = '' : inputForm.glt4" v-model="inputForm.t4" id="t4" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt4">Policy Year (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt4" id="glt4" :options="policyYearLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t4 == true" />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t5">T5 (Cost Center) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t5) ? inputForm.glt5 = '' : inputForm.glt5" v-model="inputForm.t5" id="t5" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt5">Cost Center (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt5" id="glt5" :options="costCenterLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t5 == true"  />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t6">T6 (Supplier) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t6) ? inputForm.glt6 = '' : inputForm.glt6" v-model="inputForm.t6" id="t6" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt6">Supplier (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt6" id="glt6" :options="supplierLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t6 == true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t7">T7 (Customer) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t7) ? inputForm.glt7 = '' : inputForm.glt7" v-model="inputForm.t7" id="t7" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt7">Customer (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt7" id="glt7" :options="customerLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t7 == true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t8">T8 (Reinsurance) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t8) ? inputForm.glt8 = '' : inputForm.glt8" v-model="inputForm.t8" id="t8" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt8">Reinsurance (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt8" id="glt8" :options="reinsuranceLs" optionLabel="desc" optionValue="code"  placeholder="Select one..." :disabled="inputForm.t8 == true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="t9">T9 (Cash Flow) *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.t9) ? inputForm.glt9 = '' : inputForm.glt9" v-model="inputForm.t9" id="t9" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glt9">Cash Flow (Default)</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glt9" id="glt9" :options="cashFlowLs"  optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.t9 == true"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="collectionBank">Collection Bank *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.collectionBank == false) ? inputForm.glColloctionBankAccountNo = '' : inputForm.glColloctionBankAccountNo" v-model="inputForm.collectionBank" id="collectionBank" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glColloctionBankAccountNo">Collection Bank Account No</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glColloctionBankAccountNo" id="glColloctionBankAccountNo" :options="colbankLs" optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.collectionBank == false"/>
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="disbursementBank">Disbursement Bank *</label>
+                                <Dropdown class="p-inputtext-sm" v-bind:model="(inputForm.disbursementBank == false) ? inputForm.glDisbursementBankAccountNo = '' : inputForm.glDisbursementBankAccountNo" v-model="inputForm.disbursementBank" id="disbursementBank" :options="yesNoQuestion" optionLabel="name" optionValue="value" placeholder="Select one..." />
+                            </div>
+                            <div class="field col-12 md:col-6">
+                                <label for="glDisbursementBankAccountNo">Disbursement Bank Account No</label>
+                                <Dropdown class="p-inputtext-sm" v-model="inputForm.glDisbursementBankAccountNo" id="glDisbursementBankAccountNo" :options="disbankLs"  optionLabel="desc" optionValue="code" placeholder="Select one..." :disabled="inputForm.disbursementBank == false"/>
+                            </div>  
+                        </div>  
+                    </div>  
+                </div>
+            </div>
+        </div>
+</template>
+
+<script>
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import masterService from "../../../service/admin/masterDataService";
+
+export default {
+    setup() {
+        const route = useRoute();
+        const router = useRouter();
+        const data = JSON.parse(route.params.data)
+        const accountCodeLs = ref();
+        const accountTypeLs = ref();
+        const subFundLs = ref();
+        const fundTypeLs = ref();
+        const productGroupLs = ref()
+        const distributionChannelLs = ref()
+        const policyYearLs = ref()
+        const costCenterLs = ref()
+        const customerLs = ref()
+        const productLs = ref()
+        const supplierLs = ref()
+        const reinsuranceLs = ref()
+        const cashFlowLs = ref()
+        const colbankLs = ref()
+        const disbankLs = ref()
+        const bankAccountLs = ref()
+
+        const store = useStore();
+        const inputForm = ref({
+            effectiveDateFrom: new Date(data.effectiveDateFrom),
+            effectiveDateTo: new Date (data.effectiveDateTo),
+            seqId: data.seqId,
+            accountCode: data.accountCode,
+            accountType: data.accountType,
+            fundByTransLvl: data.fundByTransLvl,
+            subFundClass: data.subFundClass,
+            t0: data.t0,
+            glt0: data.glt0,
+            t1: data.t1,
+            glt1: data.glt1,
+            t2: data.t2,
+            glt2: data.glt2,
+            t3: data.t3,
+            glt3: data.glt3,
+            t4: data.t4,
+            glt4: data.glt4,
+            t5: data.t5,
+            glt5: data.glt5,
+            t6: data.t6,
+            glt6: data.glt6,
+            t7: data.t7,
+            glt7: data.glt7,
+            t8: data.t8,
+            glt8: data.glt8,
+            t9: data.t9,
+            glt9: data.glt9,
+            collectionBank: data.collectionBank,
+            glColloctionBankAccountNo: data.glColloctionBankAccountNo,
+            disbursementBank: data.disbursementBank,
+            glDisbursementBankAccountNo: data.glDisbursementBankAccountNo,
+        })
+
+        const saveExit = () => {
+            store.dispatch('chartofaccount/save', inputForm.value);
+            alert("Record saved successfully")
+            router.push('/chartofaccount')
+        }
+
+        const delRecord = () => {    
+            const answer = confirm("Confirm delete this record ?");
+
+            if(answer){
+                store.dispatch('chartofaccount/delete', inputForm.value.seqId);
+                alert('Record deleted successfully')
+                router.push("/chartofaccount");
+            }
+        }
+
+        const close = () => {
+            router.push("/chartofaccount");
+        }
+
+        onMounted(() => {
+            masterService.getDetailCode("GLBALCODEMAP")
+            .then((res) => {
+                accountCodeLs.value = res.data.map(concateCodeDesc);
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            }).then(() =>
+            masterService.getDetailCode("GLBALCODETYPE")
+            .then((res) => {
+                accountTypeLs.value = res.data.map(concateCodeDesc);
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("SUBFUNDCLS")
+            .then((res) => {
+                subFundLs.value = res.data.map(concateCodeDesc);
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("FUNDTYPE")
+            .then((res) => {
+                fundTypeLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("PRODUCTCLS")
+            .then((res) => {
+                productGroupLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("DISTCHAN")
+            .then((res) => {
+                distributionChannelLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("GLPOLYR")
+            .then((res) => {
+                policyYearLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("REPOFFCODE")
+            .then((res) => {
+                costCenterLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("GLT7")
+            .then((res) => {
+                customerLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("COLLBANK")
+            .then((res) => {
+                colbankLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("BANKDIS")
+            .then((res) => {
+                disbankLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("GLT6")
+            .then((res) => {
+                supplierLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("GLT8")
+            .then((res) => {
+                productLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("RICOMPANY")
+            .then((res) => {
+                reinsuranceLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("GLT9")
+            .then((res) => {
+                cashFlowLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            })).then(() =>
+            masterService.getDetailCode("GLT9")
+            .then((res) => {
+                cashFlowLs.value = res.data;
+            })
+            .catch(e => {
+                console.error(e.response.status);
+            }))
+
+
+bankAccountLs
+        });
+
+        const concateCodeDesc = (mastercode) => {
+            return {
+                code: mastercode.code,
+                desc: mastercode.code + ' - ' + mastercode.desc
+            }
+        }
+
+        const yesNoQuestion = ref([
+            { name: 'Yes', value: true },
+            { name: 'No', value: false },        
+        ])
+
+
+        return {
+            inputForm, 
+            yesNoQuestion,
+            close,
+            fundTypeLs,
+            accountCodeLs,
+            accountTypeLs,
+            productGroupLs,
+            subFundLs,
+            saveExit,
+            delRecord,
+            costCenterLs,
+            policyYearLs,
+            distributionChannelLs,
+            customerLs,
+            productLs,
+            concateCodeDesc,
+            colbankLs,
+            cashFlowLs,
+            supplierLs,
+            disbankLs,
+            reinsuranceLs,
+        }
+    },
+}
+
+</script>
+
+<style scoped>
+.pagePanel {
+    color: #4169E1;
+}
+</style>
